@@ -1,13 +1,14 @@
 package cmd
 
 import (
-	"github.com/gorilla/mux"
-	"github.com/spf13/cobra"
-	"github.com/tcentric/cloud-lab/internal/controller"
 	"log"
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/gorilla/mux"
+	"github.com/mantasgra/cloud-lab/internal/controller"
+	"github.com/spf13/cobra"
 )
 
 var httpServerCmd = &cobra.Command{
@@ -24,7 +25,7 @@ func server() {
 	r.HandleFunc("/username", controller.GithubUsernameHandler).Methods("GET")
 
 	// TODO. Add a handler here which will use controller.Sha256Handler function for HTTP "GET" method. Use curly brackets for path matching, like this: /{username}
-	r.HandleFunc("/{username}", controller.Sha256Handler.Methods("GET"))
+	r.HandleFunc("/{username}", controller.Sha256Handler).Methods("GET")
 	// serve static files - DO NOT CHANGE THIS!
 	r.PathPrefix("/ui/css").Handler(http.StripPrefix("/ui/css", http.FileServer(http.Dir("static/css"))))
 	r.PathPrefix("/ui/js").Handler(http.StripPrefix("/ui/js", http.FileServer(http.Dir("static/js"))))

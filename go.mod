@@ -1,4 +1,4 @@
-module github.com/tcentric/cloud-lab
+module github.com/mantasgra/cloud-lab
 
 go 1.12
 
